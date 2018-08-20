@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Support.UI;
 using System;
 
@@ -9,18 +9,24 @@ namespace LitecartWebTests
     [TestFixture]
     public class LoginTests
     {
-        private IWebDriver chromeDriver;
+        private IWebDriver ieDriver;
         private WebDriverWait wait;
         private string baseURL;
 
         [SetUp]
         public void Start()
         {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArgument("start-maximized");
-            chromeDriver = new ChromeDriver(options);
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            wait = new WebDriverWait(chromeDriver, TimeSpan.FromSeconds(10));
+
+            InternetExplorerOptions options = new InternetExplorerOptions();
+            options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
+            options.IgnoreZoomLevel = true;
+            ieDriver = new InternetExplorerDriver(options);
+            ieDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            wait = new WebDriverWait(ieDriver, TimeSpan.FromSeconds(10));            
+
+            ieDriver.Manage().Cookies.DeleteAllCookies();
+            ieDriver.Manage().Window.Maximize();
+
             baseURL = "http://localhost";
         }
 
@@ -28,17 +34,17 @@ namespace LitecartWebTests
         public void LoginWithValidCredentials()
         {
             // Open admin login oage
-            chromeDriver.Navigate().GoToUrl(baseURL + "/litecart/admin/login.php");
+            ieDriver.Navigate().GoToUrl(baseURL + "/litecart/admin/login.php");
             // Enter username
-            chromeDriver.FindElement(By.Name("username")).Clear();
-            chromeDriver.FindElement(By.Name("username")).SendKeys("admin");
+            ieDriver.FindElement(By.Name("username")).Clear();
+            ieDriver.FindElement(By.Name("username")).SendKeys("admin");
             // Enter password
-            chromeDriver.FindElement(By.Name("password")).Clear();
-            chromeDriver.FindElement(By.Name("password")).SendKeys("admin");
+            ieDriver.FindElement(By.Name("password")).Clear();
+            ieDriver.FindElement(By.Name("password")).SendKeys("admin");
             // Login
-            chromeDriver.FindElement(By.CssSelector("button[name=\"login\"]")).Click();
+            ieDriver.FindElement(By.CssSelector("button[name=\"login\"]")).Click();
             // Logout
-            chromeDriver.FindElement(By.CssSelector("a[title='Logout']")).Click();
+            ieDriver.FindElement(By.CssSelector("a[title='Logout']")).Click();
         }
 
         [TearDown]
@@ -46,7 +52,7 @@ namespace LitecartWebTests
         {
             try
             {
-                chromeDriver.Quit();
+                ieDriver.Quit();
             }
             catch (Exception)
             {
