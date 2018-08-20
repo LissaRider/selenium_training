@@ -9,16 +9,18 @@ namespace LitecartWebTests
     [TestFixture]
     public class LoginTests
     {
-        private IWebDriver driver;
+        private IWebDriver chromeDriver;
         private WebDriverWait wait;
         private string baseURL;
 
         [SetUp]
         public void Start()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("start-maximized");
+            chromeDriver = new ChromeDriver(options);
+            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            wait = new WebDriverWait(chromeDriver, TimeSpan.FromSeconds(10));
             baseURL = "http://localhost";
         }
 
@@ -26,17 +28,17 @@ namespace LitecartWebTests
         public void LoginWithValidCredentials()
         {
             // Open admin login oage
-            driver.Navigate().GoToUrl(baseURL + "/litecart/admin/login.php");
+            chromeDriver.Navigate().GoToUrl(baseURL + "/litecart/admin/login.php");
             // Enter username
-            driver.FindElement(By.Name("username")).Clear();
-            driver.FindElement(By.Name("username")).SendKeys("admin");
+            chromeDriver.FindElement(By.Name("username")).Clear();
+            chromeDriver.FindElement(By.Name("username")).SendKeys("admin");
             // Enter password
-            driver.FindElement(By.Name("password")).Clear();
-            driver.FindElement(By.Name("password")).SendKeys("admin");
+            chromeDriver.FindElement(By.Name("password")).Clear();
+            chromeDriver.FindElement(By.Name("password")).SendKeys("admin");
             // Login
-            driver.FindElement(By.CssSelector("button[name=\"login\"]")).Click();
+            chromeDriver.FindElement(By.CssSelector("button[name=\"login\"]")).Click();
             // Logout
-            driver.FindElement(By.CssSelector("i.fa.fa-sign-out.fa-lg")).Click();
+            chromeDriver.FindElement(By.CssSelector("a[title='Logout']")).Click();
         }
 
         [TearDown]
@@ -44,7 +46,7 @@ namespace LitecartWebTests
         {
             try
             {
-                driver.Quit();
+                chromeDriver.Quit();
             }
             catch (Exception)
             {
