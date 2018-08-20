@@ -17,11 +17,11 @@ namespace LitecartWebTests
         public void Start()
         {
 
-            // Firefox 61.0.2
+            // Firefox ESR 52.9.0
             FirefoxOptions options = new FirefoxOptions
             {
-                BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe",
-                UseLegacyImplementation = false,
+                BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox ESR\firefox.exe",
+                UseLegacyImplementation = true,
                 Proxy = new Proxy() { Kind = ProxyKind.Direct }
             };
             firefoxDriver = new FirefoxDriver(options);
