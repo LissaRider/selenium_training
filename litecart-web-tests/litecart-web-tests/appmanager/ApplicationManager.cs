@@ -1,7 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.IE;
-//using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
@@ -15,6 +13,7 @@ namespace LitecartWebTests
         public LoginHelper Auth { get; }
         public NavigationHelper Navigator { get; }        
         public LeftMenuHelper LeftMenu { get; }
+        public ProductHelper productCard { get; }
 
         protected string BaseURL => "http://localhost";
 
@@ -34,7 +33,8 @@ namespace LitecartWebTests
 
             Auth = new LoginHelper(this);
             Navigator = new NavigationHelper(this, BaseURL);
-            LeftMenu=new LeftMenuHelper(this);
+            LeftMenu = new LeftMenuHelper(this);
+            productCard = new ProductHelper(this);
     }
 
         public static ApplicationManager GetInstance()

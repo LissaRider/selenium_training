@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="appmanager\LeftMenuHelper.cs" />
+    <Compile Include="appmanager\ProductCardHelper.cs" />
     <Compile Include="models\AccountData.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
     <Compile Include="appmanager\HelperBase.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="tests\CategoriesTests.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
+    <Compile Include="tests\ProductCardTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

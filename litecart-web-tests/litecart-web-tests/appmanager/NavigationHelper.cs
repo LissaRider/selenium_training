@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-
-namespace LitecartWebTests
+﻿namespace LitecartWebTests
 {
     public class NavigationHelper : HelperBase
     {
