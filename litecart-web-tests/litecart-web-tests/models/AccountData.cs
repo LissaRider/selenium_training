@@ -13,7 +13,7 @@
 
         public override string ToString()
         {
-            return "Username=" + Username + ", Password=" + Password;
+            return $"Username={Username}, Password={Password}";
         }
     }
 }

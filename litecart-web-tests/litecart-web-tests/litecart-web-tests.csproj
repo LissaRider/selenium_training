@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="appmanager\LeftMenuHelper.cs" />
     <Compile Include="models\AccountData.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
     <Compile Include="appmanager\HelperBase.cs" />
@@ -68,14 +69,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tests\LoginTests.cs" />
     <Compile Include="tests\TestBase.cs" />
+    <Compile Include="tests\CategoriesTests.cs" />
+    <Compile Include="tests\AuthTestBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="data\invalidCredentials.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\validCredentials.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

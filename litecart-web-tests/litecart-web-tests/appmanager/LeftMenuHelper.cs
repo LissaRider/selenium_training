@@ -1,0 +1,42 @@
+﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace LitecartWebTests
+{
+    public class LeftMenuHelper : HelperBase
+    {
+        public LeftMenuHelper(ApplicationManager manager) : base(manager) { }
+
+        public LeftMenuHelper GetCategoryList()
+        {
+            List<IWebElement> category = driver.FindElements(By.CssSelector("#app-")).ToList();
+            for (int cat = 0; cat < category.Count; cat++)
+            {
+                driver.FindElements(By.CssSelector("#app->a"))[cat].Click();
+                GetSubcategoryList();
+            }
+            return this;
+        }
+
+        private void GetSubcategoryList()
+        {
+            List<IWebElement> subcategory = driver.FindElements(By.CssSelector(".docs>li")).ToList();
+            for (int scat = 0; scat < subcategory.Count; scat++)
+            {
+                driver.FindElements(By.CssSelector(".docs>li"))[scat].Click();
+                IsPageTitlePresence();
+            }
+        }
+
+        private void IsPageTitlePresence()
+        {
+            string title = driver.FindElement(By.CssSelector("#main>h1")).GetAttribute("innerText");
+            if (title.Length == 0)
+            {
+                throw new ArgumentException("Warning! No page title!");
+            }
+        }
+    }
+}

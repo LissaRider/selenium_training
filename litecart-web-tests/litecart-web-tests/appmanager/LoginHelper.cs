@@ -4,59 +4,30 @@ namespace LitecartWebTests
 {
     public class LoginHelper: HelperBase
     {
-        public LoginHelper(ApplicationManager manager) : base(manager)
-        {
-        }
+        public LoginHelper(ApplicationManager manager) : base(manager) { }
 
-        public void LoginInChrome(AccountData account)
+        public void LoginIn(AccountData account)
         {
-            TypeInChrome(By.Name("username"), account.Username);
-            TypeInChrome(By.Name("password"), account.Password);
-            ClickInChrome(By.CssSelector("button[name='login']"));
-        }
+            manager.Navigator.OpenAdminLoginPage();
 
-        public void LogininIE(AccountData account)
-        {
-            TypeInIE(By.Name("username"), account.Username);
-            TypeInIE(By.Name("password"), account.Password);
-            ClickInIE(By.CssSelector("button[name='login']"));
-        }
-
-        public void LogoutInChrome()
-        {
-            if (IsLoggedInChrome())
+            if (IsLoggedIn())
             {
-                ClickInChrome(By.CssSelector("a[title='Logout']"));
+                return;
+            }
+
+            Type(By.Name("username"), account.Username);
+            Type(By.Name("password"), account.Password);
+            Click(By.CssSelector("button[name='login']"));
+        }
+
+        public void Logout()
+        {
+            if (IsLoggedIn())
+            {
+                Click(By.CssSelector("a[title='Logout']"));
             }
         }
 
-        public void LogoutInIE()
-        {
-            if (IsLoggedInIE())
-            {
-                ClickInIE(By.CssSelector("a[title='Logout']"));
-            }
-        }
-
-        public bool IsLoggedInChrome()
-        {
-            return IsChromeElementPresent(By.CssSelector("a[title='Logout']"));
-        }
-
-
-        public bool IsLoggedInIE()
-        {
-            return IsIEElementPresent(By.CssSelector("a[title='Logout']"));
-        }
-
-        public bool IsLoggedInChrome(AccountData account)
-        {
-            return IsLoggedInChrome();              
-        }
-
-        public bool IsLoggedInIE(AccountData account)
-        {
-            return IsLoggedInIE();
-        }
+        public bool IsLoggedIn() =>  IsElementPresent(By.CssSelector("a[title='Logout']"));
     }
 }
