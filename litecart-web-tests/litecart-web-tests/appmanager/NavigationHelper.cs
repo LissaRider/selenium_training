@@ -2,29 +2,29 @@
 {
     public class NavigationHelper : HelperBase
     {
-        protected string baseURL { get; set; }
+        protected string BaseURL { get; set; }
 
         public NavigationHelper(ApplicationManager manager, string baseURL) : base(manager)
         {
-            this.baseURL = baseURL;
+            this.BaseURL = baseURL;
         }
 
         public void OpenAdminLoginPage()
         {
-            if (driver.Url == $"{baseURL}/litecart/admin/login.php")
+            if (Driver.Url == $"{BaseURL}/litecart/admin/login.php")
             {
                 return;
             }
-            NavigateToInChrome($"{baseURL}/litecart/admin/login.php");
+            NavigateTo($"{BaseURL}/litecart/admin/login.php");
         }
         
         public void OpenMainStorePage()
         {
-            if (driver.Url == $"{baseURL}/litecart/en/")
+            if (Driver.Url == $"{BaseURL}/litecart/en/")
             {
                 return;
             }
-            NavigateToInChrome($"{baseURL}/litecart/");
+            NavigateTo($"{BaseURL}/litecart/");
         }
     }
 }

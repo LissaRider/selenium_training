@@ -8,7 +8,7 @@ namespace LitecartWebTests
 
         public void LoginIn(AccountData account)
         {
-            manager.Navigator.OpenAdminLoginPage();
+            Manager.Navigator.OpenAdminLoginPage();
 
             if (IsLoggedIn())
             {

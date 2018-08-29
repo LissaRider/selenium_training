@@ -11,7 +11,7 @@ namespace LitecartWebTests
 
         public void VerifyStickerPresence()
         {
-            List<IWebElement> items = driver.FindElements(By.CssSelector(".col-xs-6.col-sm-4.col-md-3")).ToList();
+            List<IWebElement> items = Driver.FindElements(By.CssSelector(".product")).ToList();
             if (items.Count > 0)
             {
                 foreach (IWebElement item in items)

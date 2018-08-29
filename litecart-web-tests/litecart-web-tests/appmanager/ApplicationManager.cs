@@ -13,7 +13,7 @@ namespace LitecartWebTests
         public LoginHelper Auth { get; }
         public NavigationHelper Navigator { get; }        
         public LeftMenuHelper LeftMenu { get; }
-        public ProductHelper productCard { get; }
+        public ProductHelper ProductCard { get; }
 
         protected string BaseURL => "http://localhost";
 
@@ -34,7 +34,7 @@ namespace LitecartWebTests
             Auth = new LoginHelper(this);
             Navigator = new NavigationHelper(this, BaseURL);
             LeftMenu = new LeftMenuHelper(this);
-            productCard = new ProductHelper(this);
+            ProductCard = new ProductHelper(this);
     }
 
         public static ApplicationManager GetInstance()
