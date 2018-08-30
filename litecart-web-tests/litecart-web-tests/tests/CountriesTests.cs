@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 
 namespace LitecartWebTests
@@ -6,30 +8,11 @@ namespace LitecartWebTests
     [TestFixture]
     public class CountriesTests : AuthTestBase
     {
-
         [Test]
-        public void VerifyCountiesSortList()
+        public void VerifySortListsForCountries()
         {
-            app.Navigator.OpenCountriesPage();
-
-            List<CountryData> countries = app.Countries.GetCountriesList();
-            List<CountryData> sortedCountries = app.Countries.GetCountriesList();
-            sortedCountries.Sort();            
-
-            Assert.AreEqual(countries, sortedCountries);            
+            app.Countries.VerifyCountrySortList();
+            app.Countries.MoveToEditCountry();
         }
-
-        [Test]
-        public void VerifyCountyZonesSortList()
-        {
-            app.Navigator.OpenCountriesPage();
-            app.Countries.GoToEditCountryPage();
-
-            List<CountryZoneData> countryZones = app.Countries.GetCountryZonesList();            
-            List<CountryZoneData> sortedcountryZones = app.Countries.GetCountryZonesList();
-            sortedcountryZones.Sort();
-
-            Assert.AreEqual(countryZones, sortedcountryZones);            
-        }      
     }
 }
