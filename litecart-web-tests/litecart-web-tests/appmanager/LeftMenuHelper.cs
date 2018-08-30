@@ -32,7 +32,7 @@ namespace LitecartWebTests
 
         private void IsPageTitlePresence()
         {
-            string title = Driver.FindElement(By.CssSelector("#main>h1")).GetAttribute("innerText");
+            string title = Driver.FindElement(By.CssSelector("#content>h1")).GetAttribute("innerText");
             if (title.Length == 0)
             {
                 throw new ArgumentException("Warning! No page title!");

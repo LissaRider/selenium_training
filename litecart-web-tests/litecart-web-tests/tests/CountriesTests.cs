@@ -29,7 +29,7 @@ namespace LitecartWebTests
             List<CountryZoneData> sortedcountryZones = app.Countries.GetCountryZonesList();
             sortedcountryZones.Sort();
 
-            Assert.AreEqual(sortedcountryZones, countryZones);            
+            Assert.AreEqual(countryZones, sortedcountryZones);            
         }      
     }
 }
