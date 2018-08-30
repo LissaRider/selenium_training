@@ -14,6 +14,7 @@ namespace LitecartWebTests
         public NavigationHelper Navigator { get; }        
         public LeftMenuHelper LeftMenu { get; }
         public ProductHelper ProductCard { get; }
+        public CountryHelper Countries { get; }
 
         protected string BaseURL => "http://localhost";
 
@@ -26,7 +27,7 @@ namespace LitecartWebTests
             chromeOptions.AddArgument("start-maximized");
             Driver = new ChromeDriver(chromeOptions);            
             
-            Console.WriteLine(((IHasCapabilities)Driver).Capabilities);             
+            //Console.WriteLine(((IHasCapabilities)Driver).Capabilities);             
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             Driver.Manage().Cookies.DeleteAllCookies();
@@ -35,7 +36,8 @@ namespace LitecartWebTests
             Navigator = new NavigationHelper(this, BaseURL);
             LeftMenu = new LeftMenuHelper(this);
             ProductCard = new ProductHelper(this);
-    }
+            Countries = new CountryHelper(this);
+        }
 
         public static ApplicationManager GetInstance()
         {

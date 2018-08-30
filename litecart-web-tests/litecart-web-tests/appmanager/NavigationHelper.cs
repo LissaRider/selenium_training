@@ -1,4 +1,6 @@
-﻿namespace LitecartWebTests
+﻿using OpenQA.Selenium;
+
+namespace LitecartWebTests
 {
     public class NavigationHelper : HelperBase
     {
@@ -25,6 +27,15 @@
                 return;
             }
             NavigateTo($"{BaseURL}/litecart/");
+        }
+
+        public void OpenCountriesPage()
+        {
+            if (Driver.Url == $"{BaseURL}/litecart/admin/?app=countries&doc=countries")
+            {
+                return;
+            }
+            Click(By.XPath(".//li[@id='app-']/a[contains(@href,'?app=countries&doc=countries')]"));
         }
     }
 }

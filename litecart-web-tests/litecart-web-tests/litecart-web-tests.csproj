@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="appmanager\CountryHelper.cs" />
     <Compile Include="appmanager\LeftMenuHelper.cs" />
     <Compile Include="appmanager\ProductCardHelper.cs" />
     <Compile Include="models\AccountData.cs" />
@@ -67,12 +68,14 @@
     <Compile Include="appmanager\HelperBase.cs" />
     <Compile Include="appmanager\LoginHelper.cs" />
     <Compile Include="appmanager\NavigationHelper.cs" />
+    <Compile Include="models\CountryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tests\LoginTests.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="tests\CategoriesTests.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
     <Compile Include="tests\ProductCardTests.cs" />
+    <Compile Include="tests\CountriesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
