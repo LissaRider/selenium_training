@@ -37,5 +37,19 @@ namespace LitecartWebTests
             }
             Click(By.XPath(".//li[@id='app-']/a[contains(@href,'?app=countries&doc=countries')]"));
         }
+
+        public void OpenGeoZonesPage()
+        {
+            if (Driver.Url == $"{BaseURL}/litecart/admin/?app=geo_zones&doc=geo_zones")
+            {
+                return;
+            }
+            Click(By.XPath(".//li[@id='app-']/a[contains(@href,'?app=geo_zones&doc=geo_zones')]"));
+        }
+
+        public void OpenInNewWindow(string url)
+        {
+            ((IJavaScriptExecutor)Driver).ExecuteScript("window.open(arguments[0])", url);
+        }
     }
 }

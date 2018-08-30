@@ -15,6 +15,7 @@ namespace LitecartWebTests
         public LeftMenuHelper LeftMenu { get; }
         public ProductHelper ProductCard { get; }
         public CountryHelper Countries { get; }
+        public ZoneHelper Zones { get; }
 
         protected string BaseURL => "http://localhost";
 
@@ -37,6 +38,7 @@ namespace LitecartWebTests
             LeftMenu = new LeftMenuHelper(this);
             ProductCard = new ProductHelper(this);
             Countries = new CountryHelper(this);
+            Zones = new ZoneHelper(this);
         }
 
         public static ApplicationManager GetInstance()

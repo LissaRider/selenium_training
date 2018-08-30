@@ -3,16 +3,16 @@
 namespace LitecartWebTests
 
 {
-    public class CountryData : IEquatable<CountryData>, IComparable<CountryData>
+    public class ZoneData : IEquatable<ZoneData>, IComparable<ZoneData>
     {
-        public string CountryName { get; set; }
+        public string ZoneName { get; set; }
 
-        public CountryData(string countryName)
+        public ZoneData(string zoneName)
         {
-            CountryName = countryName;
+            ZoneName = zoneName;
         }
 
-        public bool Equals(CountryData other)
+        public bool Equals(ZoneData other)
         {
             if (ReferenceEquals(other, null))
             {
@@ -22,21 +22,21 @@ namespace LitecartWebTests
             {
                 return true;
             }
-            return CountryName == other.CountryName;
-        }
-              
-        public override string ToString()
-        {
-            return $"{CountryName}\n";
+            return ZoneName == other.ZoneName;
         }
 
-        public int CompareTo(CountryData other)
+        public override string ToString()
+        {
+            return $"{ZoneName}\n";
+        }
+
+        public int CompareTo(ZoneData other)
         {
             if (ReferenceEquals(other, null))
             {
                 return 1;
             }
-            return CountryName.CompareTo(other.CountryName);
+            return ZoneName.CompareTo(other.ZoneName);
         }
     }
 }

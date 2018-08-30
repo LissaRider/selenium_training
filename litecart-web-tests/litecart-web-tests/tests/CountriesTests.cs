@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
+using System.Threading;
 
 namespace LitecartWebTests
 {
@@ -11,8 +9,16 @@ namespace LitecartWebTests
         [Test]
         public void VerifySortListsForCountries()
         {
-            app.Countries.VerifyCountrySortList();
-            app.Countries.MoveToEditCountry();
+            app.Navigator.OpenCountriesPage();
+            app.Countries.VerifyCountriesSortList();
+            app.Countries.GoToEditCountryPageAndVerifyZonesSortList();
+        }
+
+        [Test]
+        public void VerifySortListsForGeoZones()
+        {
+            app.Navigator.OpenGeoZonesPage();
+            app.Zones.GoToEditGeoZonePageAndVerifyZonesSortList();
         }
     }
 }
