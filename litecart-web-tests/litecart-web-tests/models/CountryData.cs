@@ -5,38 +5,38 @@ namespace LitecartWebTests
 {
     public class CountryData : IEquatable<CountryData>, IComparable<CountryData>
     {
-        public string Name { get; set; }
+        public string CountryName { get; set; }
 
-        public CountryData(string name)
+        public CountryData(string countryName)
         {
-            Name = name;
+            CountryName = countryName;
         }
 
         public bool Equals(CountryData other)
         {
-            if (ReferenceEquals(other, null))
+            if (object.ReferenceEquals(other, null))
             {
                 return false;
             }
-            if (ReferenceEquals(this, other))
+            if (object.ReferenceEquals(this, other))
             {
                 return true;
             }
-            return Name == other.Name;
+            return CountryName == other.CountryName;
         }
               
         public override string ToString()
         {
-            return $"{Name}\n";
+            return $"{CountryName}\n";
         }
 
         public int CompareTo(CountryData other)
         {
-            if (ReferenceEquals(other, null))
+            if (object.ReferenceEquals(other, null))
             {
                 return 1;
             }
-            return Name.CompareTo(other.Name);
+            return CountryName.CompareTo(other.CountryName);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 
 namespace LitecartWebTests
@@ -19,5 +18,18 @@ namespace LitecartWebTests
 
             Assert.AreEqual(countries, sortedCountries);            
         }
+
+        [Test]
+        public void VerifyCountyZonesSortList()
+        {
+            app.Navigator.OpenCountriesPage();
+            app.Countries.GoToEditCountryPage();
+
+            List<CountryZoneData> countryZones = app.Countries.GetCountryZonesList();            
+            List<CountryZoneData> sortedcountryZones = app.Countries.GetCountryZonesList();
+            sortedcountryZones.Sort();
+
+            Assert.AreEqual(sortedcountryZones, countryZones);            
+        }      
     }
 }

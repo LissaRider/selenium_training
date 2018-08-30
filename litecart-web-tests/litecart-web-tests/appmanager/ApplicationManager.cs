@@ -28,7 +28,7 @@ namespace LitecartWebTests
             Driver = new ChromeDriver(chromeOptions);            
             
             //Console.WriteLine(((IHasCapabilities)Driver).Capabilities);             
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1.5);
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             Driver.Manage().Cookies.DeleteAllCookies();
 
