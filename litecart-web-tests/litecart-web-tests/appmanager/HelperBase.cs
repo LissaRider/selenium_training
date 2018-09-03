@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace LitecartWebTests
 {
@@ -35,6 +36,11 @@ namespace LitecartWebTests
         public bool IsElementPresent(By locator)
         {
             return Driver.FindElements(locator).Count > 0;
+        }
+
+        public void Select(By locator, string value)
+        {
+            new SelectElement(Driver.FindElement(locator)).SelectByValue(value);
         }
     }
 }
