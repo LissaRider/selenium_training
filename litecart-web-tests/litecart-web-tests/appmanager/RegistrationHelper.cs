@@ -30,8 +30,8 @@ namespace LitecartWebTests
             Type(By.Name("address2"), customer.AddAddress);
             Type(By.Name("postcode"), customer.Postcode);
             Type(By.Name("city"), customer.City);
-            Select(By.Name("country_code"), customer.Country);
-            Select(By.CssSelector("select[name='zone_code']"), customer.State);
+            SelectByValue(By.Name("country_code"), customer.Country);
+            SelectByValue(By.CssSelector("select[name='zone_code']"), customer.State);
             Type(By.Name("email"), customer.Email);
             Type(By.Name("phone"), customer.Phone);
             Type(By.Name("password"), customer.Password);

@@ -13,11 +13,12 @@ namespace LitecartWebTests
         public LoginHelper Auth { get; }
         public NavigationHelper Navigator { get; }        
         public LeftMenuHelper LeftMenu { get; }
-        public ProductHelper ProductCard { get; }
+        public ProductCardHelper ProductCard { get; }
         public CountryHelper Countries { get; }
         public ZoneHelper Zones { get; }
         public RegistrationHelper Reg { get; }
         public CustomerHelper Customer { get; }
+        public ProductHelper Products { get; }
 
         protected string BaseURL => "http://localhost";
 
@@ -31,18 +32,19 @@ namespace LitecartWebTests
             Driver = new ChromeDriver(chromeOptions);            
             
             //Console.WriteLine(((IHasCapabilities)Driver).Capabilities);             
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1.5);
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             Driver.Manage().Cookies.DeleteAllCookies();
 
             Auth = new LoginHelper(this);
             Navigator = new NavigationHelper(this, BaseURL);
             LeftMenu = new LeftMenuHelper(this);
-            ProductCard = new ProductHelper(this);
+            ProductCard = new ProductCardHelper(this);
             Countries = new CountryHelper(this);
             Zones = new ZoneHelper(this);
             Reg = new RegistrationHelper(this);
             Customer = new CustomerHelper(this);
+            Products = new ProductHelper(this);
         }
 
         public static ApplicationManager GetInstance()

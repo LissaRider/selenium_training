@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace LitecartWebTests
 {
-    public class ProductHelper : HelperBase
+    public class ProductCardHelper : HelperBase
     {
-        public ProductHelper(ApplicationManager manager) : base(manager) { }
+        public ProductCardHelper(ApplicationManager manager) : base(manager) { }
 
         public void VerifyStickerPresence()
         {

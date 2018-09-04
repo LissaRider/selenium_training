@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LitecartWebTests
 {
@@ -23,6 +25,15 @@ namespace LitecartWebTests
             }
         }
 
+        public void TypeByindex(By locator, int i, string text)
+        {
+            if (text != null)
+            {
+                Driver.FindElements(locator)[i].Clear();
+                Driver.FindElements(locator)[i].SendKeys(text);
+            }
+        }
+
         public void Click(By locator)
         {
             Driver.FindElement(locator).Click();
@@ -38,9 +49,46 @@ namespace LitecartWebTests
             return Driver.FindElements(locator).Count > 0;
         }
 
-        public void Select(By locator, string value)
+        public void SelectByValue(By locator, string value)
         {
-            new SelectElement(Driver.FindElement(locator)).SelectByValue(value);
+            if (!Driver.FindElement(locator).GetAttribute("value").Equals(value))
+            {
+                new SelectElement(Driver.FindElement(locator)).SelectByValue(value);
+            }  
+        }       
+
+        public void IsChecked(By locator, string value)
+        {
+            IList<IWebElement> checkBox = Driver.FindElements(locator);
+            int size = checkBox.Count;
+            for (int i = 0; i < size; i++)
+            {
+                string item = checkBox.ElementAt(i).GetAttribute("value");
+                if (item.Equals(value))
+                {
+                    checkBox.ElementAt(i).Click();
+                }
+            }
+        }
+
+        public void SelectOneofTwoRadioBtns(By locator)
+        {
+            IList<IWebElement> radioBtn = Driver.FindElements(locator);
+            bool value = false;
+            value = radioBtn.ElementAt(0).Selected;
+            if (value == true)
+            {
+                radioBtn.ElementAt(1).Click();
+            }
+            else
+            {
+                radioBtn.ElementAt(0).Click();
+            }
+        }
+
+        public object ExecuteJavaScript(string script)
+        {
+            return ((IJavaScriptExecutor)Driver).ExecuteScript(script);
         }
     }
 }

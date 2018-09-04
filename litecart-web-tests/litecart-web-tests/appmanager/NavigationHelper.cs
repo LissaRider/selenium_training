@@ -36,7 +36,7 @@ namespace LitecartWebTests
                 return;
             }
             Click(By.XPath(".//li[@id='app-']/a[contains(@href,'?app=countries&doc=countries')]"));
-        }
+        }        
 
         public void OpenGeoZonesPage()
         {
@@ -45,6 +45,15 @@ namespace LitecartWebTests
                 return;
             }
             Click(By.XPath(".//li[@id='app-']/a[contains(@href,'?app=geo_zones&doc=geo_zones')]"));
+        }
+
+        public void OpenCatalogPage()
+        {
+            if (Driver.Url == $"{BaseURL}/litecart/admin/?app=catalog&doc=catalog")
+            {
+                return;
+            }
+            Click(By.XPath(".//li[@id='app-']/a[contains(@href,'?app=catalog&doc=catalog')]"));
         }
 
         public void OpenInNewWindow(string url)
