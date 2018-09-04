@@ -26,7 +26,7 @@ namespace LitecartWebTests
 
                 //InformationData
                 ManufacturerId = "1",
-                SupplierId = "",
+                //SupplierId = "",
                 Keywords = new Bogus.DataSets.Lorem().Word(),
                 SDescription = new Bogus.DataSets.Lorem().Sentence(),
                 Description = new Bogus.DataSets.Lorem().Sentences(),
@@ -36,7 +36,7 @@ namespace LitecartWebTests
                 //PricesData
                 PPrice = new Bogus.DataSets.Commerce().Price().ToString(),
                 PPCurrency = "USD",
-                TaxClass = "",
+                //TaxClass = "",
                 UPrice = new Bogus.DataSets.Commerce().Price().ToString(),
                 EPrice = new Bogus.DataSets.Commerce().Price().ToString()
             };
@@ -45,11 +45,13 @@ namespace LitecartWebTests
 
             app.Products.Create(product);
 
+            Assert.AreEqual(oldProducts.Count + 1, app.Products.GetProductsCount());
+
             List<ProductData> newProducts = app.Products.GetProductsList();
             oldProducts.Add(product);
             oldProducts.Sort();
             newProducts.Sort();
-            Assert.AreEqual(oldProducts.Count, newProducts.Count);
+            Assert.AreEqual(oldProducts, newProducts);
         }
     }
 }

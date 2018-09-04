@@ -1,12 +1,7 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading;
 
 namespace LitecartWebTests
 {
@@ -23,11 +18,6 @@ namespace LitecartWebTests
             SubmitProductCreation();
            
             return this;
-        }
-
-        private void ReturnToGroupsPage()
-        {
-            throw new NotImplementedException();
         }
 
         private void SubmitProductCreation()
@@ -59,6 +49,11 @@ namespace LitecartWebTests
                 .SendKeys($"{Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\"))}{product.Image}");
             ExecuteJavaScript($"$(\"[name='date_valid_from']\").val('{product.DateValidFrom}')");
             ExecuteJavaScript($"$(\"[name='date_valid_to']\").val('{product.DateValidTo}')");
+        }
+
+        internal double GetProductsCount()
+        {
+            return Driver.FindElements(By.CssSelector("table[class=dataTable] tr.row")).Count;
         }
 
         private void FillInformationData(ProductData product)
@@ -100,7 +95,7 @@ namespace LitecartWebTests
             ICollection<IWebElement> elements = Driver.FindElements(By.CssSelector("table[class=dataTable] tr.row"));
             foreach (IWebElement element in elements)
             {
-                products.Add(new ProductData(element.Text));               
+                products.Add(new ProductData(element.FindElement(By.XPath(".//td[3]")).Text));               
             }
             return products;
         }
