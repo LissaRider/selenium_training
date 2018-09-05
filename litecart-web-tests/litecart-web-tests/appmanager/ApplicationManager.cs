@@ -19,6 +19,7 @@ namespace LitecartWebTests
         public RegistrationHelper Reg { get; }
         public CustomerHelper Customer { get; }
         public ProductHelper Products { get; }
+        public CartHelper Cart { get; }
 
         protected string BaseURL => "http://localhost";
 
@@ -45,6 +46,7 @@ namespace LitecartWebTests
             Reg = new RegistrationHelper(this);
             Customer = new CustomerHelper(this);
             Products = new ProductHelper(this);
+            Cart = new CartHelper(this);
         }
 
         public static ApplicationManager GetInstance()

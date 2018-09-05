@@ -60,5 +60,10 @@ namespace LitecartWebTests
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("window.open(arguments[0])", url);
         }
+
+        public void GoToMainStorePage()
+        {
+            Click(By.XPath(".//div[@id='logotype-wrapper']/a[@href]"));
+        }
     }
 }

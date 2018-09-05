@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,7 +47,15 @@ namespace LitecartWebTests
         
         public bool IsElementPresent(By locator)
         {
-            return Driver.FindElements(locator).Count > 0;
+            try
+            {
+                Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0);
+                return Driver.FindElements(locator).Count > 0;
+            }
+            finally
+            {
+                Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            }
         }
 
         public void SelectByValue(By locator, string value)

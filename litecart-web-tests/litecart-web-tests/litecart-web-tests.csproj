@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="appmanager\CartHelper.cs" />
     <Compile Include="appmanager\CustomerHelper.cs" />
     <Compile Include="appmanager\ProductHelper.cs" />
     <Compile Include="appmanager\RegistrationHelper.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="spectests\ProductStyleTests.cs" />
     <Compile Include="tests\AccountCreationTests.cs" />
     <Compile Include="tests\ProductTests.cs" />
+    <Compile Include="tests\CartTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
