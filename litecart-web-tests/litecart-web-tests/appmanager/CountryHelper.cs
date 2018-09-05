@@ -35,7 +35,7 @@ namespace LitecartWebTests
                     Driver.SwitchTo().Window(Driver.WindowHandles[0]);
                 }                
             }
-        }      
+        }    
 
         public void VerifyCountriesSortList()
         {
@@ -43,7 +43,19 @@ namespace LitecartWebTests
             List<CountryData> sortedCountries = GetCountriesList();
             sortedCountries.Sort();
             Assert.AreEqual(countries, sortedCountries);
-        }  
-    }    
+        }
+
+        public CountryHelper InitNewCountryCreation()
+        {
+            Driver.FindElement(By.CssSelector(".button[href$=edit_country]")).Click();
+            return this;
+        }
+
+        public CountryHelper VerifyHelpLinks()
+        {
+            Manager.Window.VerifyLinkOpenInNewWindow(By.CssSelector("form a[target=_blank]"));
+            return this;
+        }
+    } 
 }
 

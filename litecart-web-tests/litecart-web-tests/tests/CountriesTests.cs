@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System.Threading;
 
 namespace LitecartWebTests
 {
@@ -19,6 +18,15 @@ namespace LitecartWebTests
         {
             app.Navigator.OpenGeoZonesPage();
             app.Zones.GoToEditGeoZonePageAndVerifyZonesSortList();
+        }
+
+        [Test]
+        public void VerifyHelpLinkOpenInNewWindow()
+        {
+            app.Navigator.OpenCountriesPage();
+            app.Countries
+                .InitNewCountryCreation()
+                .VerifyHelpLinks();
         }
     }
 }

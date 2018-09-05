@@ -69,6 +69,7 @@
     <Compile Include="appmanager\CustomerHelper.cs" />
     <Compile Include="appmanager\ProductHelper.cs" />
     <Compile Include="appmanager\RegistrationHelper.cs" />
+    <Compile Include="appmanager\WindowHelper.cs" />
     <Compile Include="appmanager\ZoneHelper.cs" />
     <Compile Include="appmanager\CountryHelper.cs" />
     <Compile Include="appmanager\LeftMenuHelper.cs" />

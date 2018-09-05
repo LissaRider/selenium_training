@@ -20,6 +20,7 @@ namespace LitecartWebTests
         public CustomerHelper Customer { get; }
         public ProductHelper Products { get; }
         public CartHelper Cart { get; }
+        public WindowHelper Window { get; }
 
         protected string BaseURL => "http://localhost";
 
@@ -47,6 +48,7 @@ namespace LitecartWebTests
             Customer = new CustomerHelper(this);
             Products = new ProductHelper(this);
             Cart = new CartHelper(this);
+            Window = new WindowHelper(this);
         }
 
         public static ApplicationManager GetInstance()
