@@ -32,22 +32,9 @@ namespace LitecartWebTests
                 {
                     List<string> newWindows = new List<string>();
                     ICollection<string> newWindowsReadOnly = driver.WindowHandles;
-                    foreach (string handle in newWindowsReadOnly)
-                    {
-                        newWindows.Add(handle);
-                    }
-                    foreach (string handle in oldWindows)
-                    {
-                        newWindows.Remove(handle);
-                    }
-                    if (newWindows.Count > 0)
-                    {
-                        return newWindows[0];
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    foreach (string handle in newWindowsReadOnly) newWindows.Add(handle);    
+                    foreach (string handle in oldWindows) newWindows.Remove(handle);
+                    return (newWindows.Count > 0) ? newWindows[0] : null;             
                 };
             }
         }
