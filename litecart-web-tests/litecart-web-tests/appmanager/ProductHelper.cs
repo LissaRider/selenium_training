@@ -1,7 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace LitecartWebTests
 {
@@ -98,6 +100,28 @@ namespace LitecartWebTests
                 products.Add(new ProductData(element.FindElement(By.XPath(".//td[3]")).Text));               
             }
             return products;
+        }
+
+        public void OpenProductPages()
+        {
+            Manager.Navigator.OpenCatalogPage();
+            GoToProductPageAndReturnWithLogs();
+        }
+
+        public void GoToProductPageAndReturnWithLogs()
+        {
+            int index = 2;
+            while (IsElementPresent(By.XPath($"//tr[@class='row'][{index}]")))
+            {
+                Click(By.XPath($"//tr[@class='row'][{index}]/td/a[@href]"));
+
+                if (IsElementPresent(By.XPath("//h1[contains(text(),'Edit Product')]")))
+                {
+                    Driver.Navigate().Back();
+                }
+                CheckLogs();
+                index++;
+            }
         }
     }
 }

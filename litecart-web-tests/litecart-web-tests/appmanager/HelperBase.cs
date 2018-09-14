@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -98,6 +99,29 @@ namespace LitecartWebTests
         public object ExecuteJavaScript(string script)
         {
             return ((IJavaScriptExecutor)Driver).ExecuteScript(script);
+        }
+
+        public void CheckLogs()
+        {
+            List<LogEntry> logs = Driver.Manage().Logs.GetLog(LogType.Browser).ToList();
+            Assert.IsTrue(logs.Count == 0, "Warning! Browser log is not empty.");
+
+            foreach (LogEntry log in logs)
+            {
+                Log(log.Message);
+            }
+        }
+
+        public void Log(string value, params object[] values)
+        {
+            // allow indenting
+            if (!string.IsNullOrEmpty(value) && value.Length > 0 && value.Substring(0, 1) != "*")
+            {
+                value = $"      { value}";
+            }
+
+            // write the log
+            Console.WriteLine(string.Format(value, values));
         }
     }
 }

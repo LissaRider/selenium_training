@@ -53,5 +53,11 @@ namespace LitecartWebTests
             newProducts.Sort();
             Assert.AreEqual(oldProducts, newProducts);
         }
+
+        [Test]
+        public void BrowserLogTest()
+        {
+            app.Products.OpenProductPages();
+        }
     }
 }

@@ -30,8 +30,7 @@ namespace SpecialSeparateTests
 
             ProductStyleTest(Driver, Wait);
         }
-
-
+        
         [Test]
         public void ProductStyleTestInFireFox()
         {

@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
@@ -8,7 +10,7 @@ namespace LitecartWebTests
 {
     public class ApplicationManager
     {
-        public IWebDriver Driver { get; set; }
+        public EventFiringWebDriver Driver { get; set; }
         public WebDriverWait Wait { get; set; }
         public LoginHelper Auth { get; }
         public NavigationHelper Navigator { get; }        
@@ -29,14 +31,27 @@ namespace LitecartWebTests
         private ApplicationManager()
         {
            
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("start-maximized");
-            Driver = new ChromeDriver(chromeOptions);            
-            
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("start-maximized");
+            options.SetLoggingPreference(LogType.Browser, LogLevel.Severe);
+            options.SetLoggingPreference(LogType.Browser, LogLevel.Warning);
+            //options.SetLoggingPreference(LogType.Client, LogLevel.All);
+            //options.SetLoggingPreference(LogType.Browser, LogLevel.All);
+            Driver = new EventFiringWebDriver (new ChromeDriver(options));
+
             //Console.WriteLine(((IHasCapabilities)Driver).Capabilities);             
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1.5);
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
             Driver.Manage().Cookies.DeleteAllCookies();
+
+            //Driver.FindElementCompleted += (sender, e) => Console.WriteLine($"Element '{e.FindMethod}' found.");
+            //Driver.ElementClicking += (sender, e) => Console.WriteLine($"Clicking on element '{e.Element}'...");
+            //Driver.ElementClicked += (sender, e) => Console.WriteLine($"Element '{e.Element}' clicked.");
+            //Driver.ExceptionThrown += (sender, e) => Console.WriteLine(e.ThrownException);
+            //Driver.Navigating += (sender, e) => Console.WriteLine($"Navigating to url '{e.Url}'...");
+            //Driver.Navigated += (sender, e) => Console.WriteLine($"Url '{e.Url}' opened.");
+            //Driver.ElementValueChanging += (sender, e) => Console.WriteLine($"Changing value in element '{e.Value}'...");
+            //Driver.ElementValueChanged += (sender, e) => Console.WriteLine($"Value '{e.Element.GetAttribute(e.Value)}' in '{e.Element}' changed.");  
 
             Auth = new LoginHelper(this);
             Navigator = new NavigationHelper(this, BaseURL);

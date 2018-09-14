@@ -9,7 +9,6 @@ namespace LitecartWebTests
         [Test]        
         public void TestAccountRegistration()
         {
-
             CustomerData customer = new CustomerData()
             {
                 TaxID = new Randomizer().Replace("##########"),
